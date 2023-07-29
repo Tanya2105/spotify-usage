@@ -4,7 +4,7 @@ let audioElement = new Audio ('1.mp3');
 let masterplay = document.getElementById('masterplay');
 let myProgressBar=document.getElementById('MyProgressBar')
 let gif=document.getElementById('gif')
-// let masterSongName = document.getElementById('masterSongName');
+let masterSongName = document.getElementById('masterSongName');
 let songItem=Array.from(document.getElementsByClassName('songItem'));
 let songs=[
     {songname:"Maan meri Jaan",filePath:" 1.mp3",coverPath:"c1.jpg"},
@@ -69,7 +69,7 @@ Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
         e.target.classList.remove('fa-play-circle');
         e.target.classList.add('fa-pause-circle');
         audioElement.src = `${songIndex+1}.mp3`;
-        // masterSongName.innerText = songs[songIndex].songname;
+        masterSongName.innerText = songs[songIndex].songname;
         audioElement.play();
         gif.style.opacity = 1;
         masterplay.classList.remove('fa-play-circle');
@@ -78,7 +78,34 @@ Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
 
     })
 })
+document.getElementById('next').addEventListener('click',()=>{
+    if(songIndex>=2){
+        songIndex=0
+    }
+    else{
+        songIndex +=1
+    }
+    audioElement.src = `${songIndex+1}.mp3`;
+        masterSongName.innerText = songs[songIndex].songname;
+        audioElement.play();
+        gif.style.opacity = 1;
+        masterplay.classList.remove('fa-play-circle');
+        masterplay.classList.add('fa-pause-circle');
+})
+document.getElementById('previous').addEventListener('click',()=>{
+    if(songIndex<=0){
+        songIndex=0
+    }
+    else{
+        songIndex -=1
+    }
+    audioElement.src = `${songIndex+1}.mp3`;
+        masterSongName.innerText = songs[songIndex].songname;
+        audioElement.play();
+        gif.style.opacity = 1;
+        masterplay.classList.remove('fa-play-circle');
+        masterplay.classList.add('fa-pause-circle');
 
-
+})
 
 
